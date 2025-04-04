@@ -1,11 +1,498 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vietnam Travel - Khám phá Việt Nam tuyệt vời</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/500');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 0;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            background-color: #333;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            padding: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+
+        .header-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ffcc00;
+            color: #333;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #e6b800;
+            transform: translateY(-3px);
+        }
+
+        /* Destinations Section */
+        .destinations {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .destination-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .destination-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .destination-content {
+            padding: 20px;
+        }
+
+        .destination-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .destination-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-box {
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        .feature-box h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .feature-box p {
+            color: #666;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .testimonial-location {
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 20px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 60px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #ffcc00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #555;
+            margin-top: 40px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                padding: 10px;
+            }
+            
+            .header-content h1 {
+                font-size: 36px;
+            }
+            
+            .header-content p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2> hell</h2>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Trang chủ</a></li>
+            <li><a href="#destinations">Điểm đến</a></li>
+            <li><a href="#features">Dịch vụ</a></li>
+            <li><a href="#testimonials">Đánh giá</a></li>
+            <li><a href="#contact">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header id="home">
+        <div class="header-content">
+            <div class="logo">Vietnam Travel</div>
+            <h1>Khám phá vẻ đẹp Việt Nam</h1>
+            <p>Hãy cùng chúng tôi trải nghiệm những điểm đến tuyệt vời nhất với dịch vụ du lịch chất lượng cao và giá cả hợp lý.</p>
+            <a href="#destinations" class="btn">Khám phá ngay</a>
+        </div>
+    </header>
+
+    <!-- Destinations Section -->
+    <section class="destinations" id="destinations">
+        <h2 class="section-title">Điểm đến nổi bật</h2>
+        <p class="section-subtitle">Khám phá những điểm đến tuyệt vời nhất Việt Nam với các tour du lịch được thiết kế riêng.</p>
+        
+        <div class="destination-grid">
+            <div class="destination-card">
+                <div class="destination-img" style="background-image: url('2_\ sức\ hút.jpg');"></div>
+                <div class="destination-content">
+                    <h3>Vịnh Hạ Long</h3>
+                    <p>Kỳ quan thiên nhiên thế giới với hàng nghìn hòn đảo đá vôi hùng vĩ giữa biển xanh.</p>
+                    <div class="price">Từ 3.500.000 VNĐ</div>
+                    <a href="#" class="btn">Đặt ngay</a>
+                </div>
+            </div>
+            
+            <div class="destination-card">
+                <div class="destination-img" style="background-image: url('Picture1.png');"></div>
+                <div class="destination-content">
+                    <h3>Phố cổ Hội An</h3>
+                    <p>Thành phố cổ xinh đẹp với những ngôi nhà rực rỡ ánh đèn lồng vào mỗi tối.</p>
+                    <div class="price">Từ 2.800.000 VNĐ</div>
+                    <a href="#" class="btn">Đặt ngay</a>
+                </div>
+            </div>
+            
+            <div class="destination-card">
+                <div class="destination-img" style="background-image: url(du-lich-sapa.jpg);"></div>
+                <div class="destination-content">
+                    <h3>Sapa</h3>
+                    <p>Thị trấn trong mây với những thửa ruộng bậc thang và văn hóa đặc sắc của đồng bào dân tộc.</p>
+                    <div class="price">Từ 3.200.000 VNĐ</div>
+                    <a href="#" class="btn">Đặt ngay</a>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Dịch vụ của chúng tôi</h2>
+        <p class="section-subtitle">Chúng tôi cam kết mang đến cho bạn những trải nghiệm du lịch tuyệt vời nhất.</p>
+        
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">✈️</div>
+                <h3>Tour trọn gói</h3>
+                <p>Bao gồm vé máy bay, khách sạn, đưa đón và hướng dẫn viên chuyên nghiệp.</p>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon">🏨</div>
+                <h3>Khách sạn cao cấp</h3>
+                <p>Hệ thống khách sạn đối tác 4-5 sao với dịch vụ hoàn hảo.</p>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon">🍲</div>
+                <h3>Ẩm thực đặc sắc</h3>
+                <p>Trải nghiệm ẩm thực địa phương với những món ăn đặc trưng nhất.</p>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon">🚌</div>
+                <h3>Xe đưa đón</h3>
+                <p>Dịch vụ đưa đón tận nơi với xe đời mới, sang trọng và an toàn.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <h2 class="section-title">Khách hàng nói gì về chúng tôi</h2>
+        <p class="section-subtitle">Sự hài lòng của khách hàng là niềm tự hào và động lực lớn nhất của chúng tôi.</p>
+        
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Tour du lịch Hạ Long thật tuyệt vời! Hướng dẫn viên nhiệt tình, khách sạn sang trọng và đồ ăn ngon. Chắc chắn sẽ quay lại lần nữa!"</p>
+                <h4 class="testimonial-author">Nguyễn Văn A</h4>
+                <p class="testimonial-location">Hà Nội</p>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Đây là lần đầu tiên tôi đi Sapa và thật sự ấn tượng với dịch vụ chuyên nghiệp của Vietnam Travel. Cảm ơn vì đã tạo nên kỷ niệm đáng nhớ!"</p>
+                <h4 class="testimonial-author">Trần Thị B</h4>
+                <p class="testimonial-location">TP. Hồ Chí Minh</p>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Giá cả hợp lý mà dịch vụ thì quá tốt. Hội An thật đẹp và tour được sắp xếp rất hợp lý. Tôi đã có thời gian tuyệt vời với gia đình."</p>
+                <h4 class="testimonial-author">Lê Văn C</h4>
+                <p class="testimonial-location">Đà Nẵng</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Sẵn sàng cho chuyến đi tiếp theo?</h2>
+        <p>Đăng ký ngay hôm nay để nhận ưu đãi đặc biệt cho chuyến du lịch sắp tới của bạn!</p>
+        <a href="#" class="btn">Liên hệ ngay</a>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Vietnam Travel</h3>
+                <p>Chúng tôi cung cấp dịch vụ du lịch chất lượng cao với giá cả hợp lý nhất.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Liên hệ</h3>
+                <p>ABC</p>
+                <p>TP. Hồ Chí Minh, Việt Nam</p>
+                <p>info@vietnamtravel.com</p>
+                <p>+84 28 1234 5678</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Liên kết</h3>
+                <a href="#home">Trang chủ</a>
+                <a href="#destinations">Điểm đến</a>
+                <a href="#features">Dịch vụ</a>
+                <a href="#testimonials">Đánh giá</a>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Theo dõi chúng tôi</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2025 Vietnam Travel. Tất cả quyền được bảo lưu.
+        </div>
+    </footer>
 </body>
 </html>
